@@ -2,7 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 3096;
+const port = process.env.PORT || 3097;
 const host = process.env.HOST || '0.0.0.0';
 
 // Enhanced configuration
@@ -26,9 +26,9 @@ const pool = new Pool(poolConfig);
 const allowedOrigins = [
   'http://localhost:5500',
   'http://127.0.0.1:5500',
-  'http://13.232.187.62:3096',
-  'http://13.232.187.62:9063',
-  'http://13.232.187.62:9064'
+  'http://13.232.187.62:3097',
+  'http://13.232.187.62:9065',
+  'http://13.232.187.62:9066'
 ];
 
 app.use(cors({
