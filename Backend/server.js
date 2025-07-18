@@ -1,4 +1,3 @@
-
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
@@ -27,10 +26,9 @@ const pool = new Pool(poolConfig);
 const allowedOrigins = [
   'http://localhost:5500',
   'http://127.0.0.1:5500',
-  'http://65.2.184.61:5500',
+  'http://65.2.184.61:3097',
   'http://65.2.184.61:9065',
-  'http://65.2.184.61:9066',
-  'http://65.2.184.61:3097'
+  'http://65.2.184.61:9066'
 ];
 
 app.use(cors({
