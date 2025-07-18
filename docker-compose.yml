@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-leave
+    restart: always
+    ports:
+      - "5064:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: new_employee_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./Backend
+    container_name: backend-leave
+    ports:
+      - "3097:3097"
+    depends_on:
+      - postgres
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: admin123
+      DB_HOST: postgres
+      DB_NAME: new_employee_db
+      DB_PORT: 5432
+    volumes:
+      - ./Backend:/app
+    restart: always
+
+  frontend:
+    build: ./Fronted
+    container_name: frontend-leave
+    ports:
+      - "9065:80"
+    restart: always
+
+  hr_page:
+    build: ./HR_Page
+    container_name: hr_page_leave
+    ports:
+      - "9066:80"
+    restart: always
+
+volumes:
+  postgres_data:
+
